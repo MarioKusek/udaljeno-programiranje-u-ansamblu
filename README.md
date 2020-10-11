@@ -13,6 +13,12 @@ Sadržaj:
     - [Okolina u kojoj radimo](#okolina-u-kojoj-radimo)
     - [Kako govoriti?](#kako-govoriti)
     - [Iskustva](#iskustva)
+  - [Kako krenuti?](#kako-krenuti)
+    - [Dohvaćanje inicijalnog projekta iz predloška](#dohvaćanje-inicijalnog-projekta-iz-predloška)
+    - [Podešavanje prava pisanja](#podešavanje-prava-pisanja)
+    - [Kloniranje i uvoz repozitorija u IDE](#kloniranje-i-uvoz-repozitorija-u-ide)
+    - [Jedna rotacija](#jedna-rotacija)
+  - [Retrospektiva](#retrospektiva)
   - [Literatura](#literatura)
 
 <!-- /TOC -->
@@ -149,6 +155,95 @@ Nije bitno tko je rekao što ili čija je ideja, nego da se posao napravi.
 Brzina će doći s vremenom, obično oko 16 sat zajedničkog rada.
 
 Uhodavanje tima oko različitih stvari traje oko 180 sati (2 mjeseca) rada. Nakon toga postaju vrlo produktivni.
+
+## Kako krenuti?
+
+### Dohvaćanje inicijalnog projekta iz predloška
+
+Upute za stvaranje repozitorija iz predloška su [ovdje](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
+
+Otići na stranicu repozitorija na GitHubu npr. [https://github.com/MarioKusek/ilj-web-server-template](https://github.com/MarioKusek/ilj-web-server-template), kliknuti na **Use this template**, zatim upišemo za ime rpozitorija koji ćemo stvoriti npr. `ilj-web-server`. Klik na **Create repository from template**.
+
+Ako smo promijenili ime projekta potrebno je kliknuti na datoteku `settings.gradle`, kliknuti na olovku i zamijeniti novo ime projekta npr.
+
+```
+rootProject.name = 'novo-ime-projekta'
+```
+
+Nakon toga je potrebno kliknuti na **Commit changes**.
+
+### Podešavanje prava pisanja
+
+Kada smo napravili repozitorij potrebno je dodati sve članove grupe (tima) koji će moći pisati po repozitoriju. Originalne upute su [ovdje](https://docs.github.com/en/free-pro-team@latest/github/setting-up-and-managing-your-github-user-account/inviting-collaborators-to-a-personal-repository).
+
+Kliknemo na **Settings** pa na **Manage Access**. Kliknemo na gumb **Invite a colaborator**. U obrascu trebamo dodati korisnička imena ili email člana tima. Kada ga github pronađe trebamo kliknuti za dodavanje.
+Korisnik će dobiti pozivnicu na email pa ju treba potvrditi.
+To treba napraviti za svakog korisnika posebno. Informacije o korisniku na githubu je nabolje razmijeniti kao poruke na kanalu u MS Teamsu.
+
+### Kloniranje i uvoz repozitorija u IDE
+
+Potrebno je klonirati projekt. Na stranici projekta kopiramo URI projekta. Nakon toga u direktoriju u kojem ga želimo klonirati napišemo:
+
+```sh
+git clone https://github.com/mkwinilj/ilj-web-server.git
+```
+
+Nakon toga projekt možemo importati u IDE pomoću **Import Existing Gradle Project**.
+
+### Jedna rotacija
+
+Vozač treba započeti sa rotacijom tako da u terminalu (git bash) napiše:
+
+```sh
+mob start 4
+```
+
+Broj 4 je za obavještavanje kada je prošlo 4 minute (ako to radi u vašoj postavci sustava). Nakon toga pokreće timer ako je to potrebno.
+Broj 4 se moži izostaviti ako se koristi neki drugi timer.
+
+Ako smo gotovi s nekom funkcionalnošću onda pokrećemo:
+
+```sh
+mob done
+```
+
+Nakon toga je potrebno napraviti:
+
+```sh
+git commmit -m "poruka"
+```
+
+I nakon toga ponovno pokrećemo:
+
+```sh
+mob start
+```
+
+Kada trebamo prebaciti rotaciju onda pokrećemo:
+
+```sh
+mob next
+```
+
+## Retrospektiva
+
+Retrospektiva služi da se prisjetimo što se dogodilo u jednoj sjednici i što bismo mogli poboljšati.
+Trebamo si postaviti pitanja iz sljedećih kategorija:
+
+- alati
+  - Koje alate smo koristili?
+  - Što smo naučili?
+  - Koje smo imali probleme?
+  - Još neki komenari?
+- učenje
+  - Što smo naučili?
+- emocije
+  - Jesam li osjetio neke emocije?
+  - Što se dogodilo da sam to osjetio?
+- tim
+  - Kako smo radili u timu (dobre stvari, problemi)?
+- problemi
+  - Neki drugi problemi koji su se dogodili?
 
 ## Literatura
 
