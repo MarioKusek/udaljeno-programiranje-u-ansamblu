@@ -19,6 +19,11 @@ Sadržaj:
     - [Kloniranje i uvoz repozitorija u IDE](#kloniranje-i-uvoz-repozitorija-u-ide)
     - [Jedna rotacija](#jedna-rotacija)
   - [Retrospektiva](#retrospektiva)
+  - [Problemi kod korištenja alata mob](#problemi-kod-korištenja-alata-mob)
+    - [Nismo snimili datoteke prije prebacivanja na novog vozača](#nismo-snimili-datoteke-prije-prebacivanja-na-novog-vozača)
+      - [Sljedeći vozač nije napravio još ništa](#sljedeći-vozač-nije-napravio-još-ništa)
+      - [Drugi vozač je već preuzeo kod, ali nije ništa mijenjao](#drugi-vozač-je-već-preuzeo-kod-ali-nije-ništa-mijenjao)
+      - [Drugi vozač je već preuzeo kod, pokrenuo sjednicu i promijenio datoteku](#drugi-vozač-je-već-preuzeo-kod-pokrenuo-sjednicu-i-promijenio-datoteku)
   - [Literatura](#literatura)
 
 <!-- /TOC -->
@@ -211,6 +216,7 @@ Nakon toga je potrebno napraviti:
 
 ```sh
 git commmit -m "poruka"
+git push
 ```
 
 I nakon toga ponovno pokrećemo:
@@ -244,6 +250,86 @@ Trebamo si postaviti pitanja iz sljedećih kategorija:
   - Kako smo radili u timu (dobre stvari, problemi)?
 - problemi
   - Neki drugi problemi koji su se dogodili?
+
+## Problemi kod korištenja alata mob
+
+Ono što je bitno naglasiti je da alat `mob` prilikom pokretanja sjednice kreira granu (*branch*) pod imenom `mob-session`. U tu granu se spremaju međurezultati između različitih vozača.
+
+Kada se pokrene `mob next` onda se trenutno promijenjene datoteke *commitaju* u tu granu i grana se prebaci na **origin/mob-session**, a lokalno se git prebaci na **master**.
+
+Kada drugi vozač pokrene `mob start` onda se ta grana povuče sa **origina** i lokalni git se prebaci na nju.
+
+Prilikom završavanja sjednice pokretanjem `mob done` git postojeću granu obriše, a zadnje stanje se spoji (*squash*) u granu iz koje je krenuto (obično **master**) i tada se može to stanje *commitati*.
+
+### Nismo snimili datoteke prije prebacivanja na novog vozača
+
+Ako nismo snimili datoteke, a pokrenuli smo `mob next` sadržaj promijenjenih datoteka ostaje u uređivaču (*editor*) i ne prenosi se na udaljeni gitov repozitorij pa drugi vozače ne može to preuzeti.
+
+Glavni problem je ako editor prati promjene na disku i primijeti da je došlo do promjene te ponovno učita datoteku sa diska. U tom slučaju je ono što smo imali u editoru izgubljeno.
+
+#### Sljedeći vozač nije napravio još ništa
+
+Rješenje je sljedeći postupak:
+
+1. ponovno pokrenemo sjednicu s `mob start`,
+2. ako *editor* pita da se učita nešto sa diska to treba odbiti
+3. snimiti datoteku
+4. prebaciti sjednicu na sljedećeg vozača pokretenjem `mob next`
+
+#### Drugi vozač je već preuzeo kod, ali nije ništa mijenjao
+
+Drugi vozače treba napraviti:
+
+1. ako je već napravio `mob start`onda treba prebaciti sjednicu tako da pokrene `mob next`, a ako nije onda ovaj korak treba preskočiti
+
+Prvi vozač:
+
+1. ponovno pokrenemo sjednicu s `mob start`,
+2. ako *editor* pita da se učita nešto sa diska to treba odbiti
+3. snimiti datoteku
+4. prebaciti sjednicu na sljedećeg vozača pokretenjem `mob next`
+
+Nako toga drugi vizač može pruzeti sjednicu sa `mob start`.
+
+#### Drugi vozač je već preuzeo kod, pokrenuo sjednicu i promijenio datoteku
+
+U ovom slučaju imamo dvije mogućnosti:
+
+1. ako ne želimo promjenu drugog vozača zadržati
+
+    a. drugi vozač: vratimo originalnu verziju datoteke `git checkout ime_datoteke`
+
+    b. drugi vozač: prebacimo sjednicu `mob next`
+
+    c. prvi vozač: preuzme sjednicu `mob start`
+
+    d. prvi vozač: snimi datoteku
+
+    e. prvi vozač: prebaci sjednicu `mob next`
+
+    f. drugi vozač: preuzme sjednicu: `mob start`
+
+2. ako želimo promjenu drugog vozača zadržati
+
+    a. drugi vozač: snimi datoteku
+
+    b. drugi vozač: `mob next`
+
+    c. prvi vozač: snimi datoteku
+
+    d. prvi vozač: spremi ovu verziju datoteke `git stash`
+
+    e. prvi vozač: preuzme sjednicu `mob start`
+
+    f. prvi vozač: spoji datoteke `git stash pop`
+
+    g. prvi vozač: otvori sve datoteke koje imaju konflikte i popravi ih ručno
+
+    h. prvi vozač: doda sve datoteke u indeks gita `git add .`
+
+    i. prvi vozač: prebaci sjednicu `mob next`
+
+    j. drugi vozač: preuzme sjednicu `mob start`
 
 ## Literatura
 
