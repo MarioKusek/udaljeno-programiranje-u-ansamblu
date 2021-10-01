@@ -136,7 +136,7 @@ Engleski nazivi:
     - pokrene alarm (*timer*) - na nekom alatu ili na mobitelu
   - ostale uloge kažu svoje uloge:
     - npr. Sanja je navigator. Pero je sljedeći navigator.
-- kada radimo u grupama onda će se svatko priključiti kanalu na Teamsu za tu grupu
+- kada radimo u *online* grupama onda će se svatko priključiti kanalu na Teamsu za tu grupu
 - TODO.txt - datoteka u koju pišemo slučajeve koje trebamo provjeriti da rade (ideje, informacije za testove)
 - popis svih članova tima u nekom redoslijedu se stavi u kanal
   - na početku je po redu vozač, navigator, sljedeći navigator
@@ -183,7 +183,7 @@ Kada smo napravili repozitorij potrebno je dodati sve članove grupe (tima) koji
 
 Kliknemo na **Settings** pa na **Manage Access**. Kliknemo na gumb **Invite a colaborator**. U obrascu trebamo dodati korisnička imena ili email člana tima. Kada ga github pronađe trebamo kliknuti za dodavanje.
 Korisnik će dobiti pozivnicu na email pa ju treba potvrditi.
-To treba napraviti za svakog korisnika posebno. Informacije o korisniku na githubu je nabolje razmijeniti kao poruke na kanalu u MS Teamsu.
+To treba napraviti za svakog korisnika posebno. Informacije o korisniku na githubu je nabolje razmijeniti kao poruke na kanalu u MS Teamsu ako radimo *online*.
 
 ### Kloniranje i uvoz repozitorija u IDE
 
@@ -193,7 +193,7 @@ Potrebno je klonirati projekt. Na stranici projekta kopiramo URI projekta. Nakon
 git clone https://github.com/mkwinilj/ilj-web-server.git
 ```
 
-Nakon toga projekt možemo importati u IDE pomoću **Import Existing Gradle Project**.
+Nakon toga projekt možemo *importati* u IDE pomoću **Import Existing Gradle Project**.
 
 ### Jedna rotacija
 
@@ -203,8 +203,8 @@ Vozač treba započeti sa rotacijom tako da u terminalu (git bash) napiše:
 mob start 4
 ```
 
-Broj 4 je za obavještavanje kada je prošlo 4 minute (ako to radi u vašoj postavci sustava). Nakon toga pokreće timer ako je to potrebno.
-Broj 4 se moži izostaviti ako se koristi neki drugi timer.
+Broj 4 je za obavještavanje kada je prošlo 4 minute (ako to radi u vašoj postavci sustava). Nakon toga pokreće *timer* ako je to potrebno.
+Broj 4 se može izostaviti ako se koristi neki drugi *timer*.
 
 Ako smo gotovi s nekom funkcionalnošću onda pokrećemo:
 
@@ -251,7 +251,7 @@ Trebamo si postaviti pitanja iz sljedećih kategorija:
 - problemi
   - Neki drugi problemi koji su se dogodili?
 
-## Problemi kod korištenja alata mob
+## Problemi kod korištenja alata `mob`
 
 Ono što je bitno naglasiti je da alat `mob` prilikom pokretanja sjednice kreira granu (*branch*) pod imenom `mob-session`. U tu granu se spremaju međurezultati između različitih vozača.
 
@@ -263,9 +263,11 @@ Prilikom završavanja sjednice pokretanjem `mob done` git postojeću granu obri�
 
 ### Nismo snimili datoteke prije prebacivanja na novog vozača
 
-Ako nismo snimili datoteke, a pokrenuli smo `mob next` sadržaj promijenjenih datoteka ostaje u uređivaču (*editor*) i ne prenosi se na udaljeni gitov repozitorij pa drugi vozače ne može to preuzeti.
+Ako nismo snimili datoteke, a pokrenuli smo `mob next` sadržaj promijenjenih datoteka ostaje u uređivaču (*editor*) i ne prenosi se na udaljeni gitov repozitorij pa drugi vozač ne može to preuzeti.
 
-Glavni problem je ako editor prati promjene na disku i primijeti da je došlo do promjene te ponovno učita datoteku sa diska. U tom slučaju je ono što smo imali u editoru izgubljeno.
+Glavni problem je ako *editor* prati promjene na disku i primijeti da je došlo do promjene te ponovno učita datoteku sa diska. U tom slučaju je ono što smo imali u *editoru* izgubljeno.
+
+Slijede rješenja za pojedine slučajeve.
 
 #### Sljedeći vozač nije napravio još ništa
 
@@ -276,60 +278,60 @@ Rješenje je sljedeći postupak:
 3. snimiti datoteku
 4. prebaciti sjednicu na sljedećeg vozača pokretenjem `mob next`
 
-#### Drugi vozač je već preuzeo kod, ali nije ništa mijenjao
+#### Novi vozač je već preuzeo kod, ali nije ništa mijenjao
 
-Drugi vozače treba napraviti:
+Novi vozač treba napraviti:
 
 1. ako je već napravio `mob start`onda treba prebaciti sjednicu tako da pokrene `mob next`, a ako nije onda ovaj korak treba preskočiti
 
-Prvi vozač:
+Prethodni vozač:
 
 1. ponovno pokrenemo sjednicu s `mob start`,
 2. ako *editor* pita da se učita nešto sa diska to treba odbiti
 3. snimiti datoteku
 4. prebaciti sjednicu na sljedećeg vozača pokretenjem `mob next`
 
-Nako toga drugi vizač može pruzeti sjednicu sa `mob start`.
+Nako toga novi vozač može pruzeti sjednicu sa `mob start`.
 
-#### Drugi vozač je već preuzeo kod, pokrenuo sjednicu i promijenio datoteku
+#### Novi vozač je već preuzeo kod, pokrenuo sjednicu i promijenio datoteku
 
 U ovom slučaju imamo dvije mogućnosti:
 
-1. ako ne želimo promjenu drugog vozača zadržati
+1. ako ne želimo promjenu novog vozača zadržati
 
-    a. drugi vozač: vratimo originalnu verziju datoteke `git checkout ime_datoteke`
+    a. novi vozač: vratimo originalnu verziju datoteke `git checkout ime_datoteke`
 
-    b. drugi vozač: prebacimo sjednicu `mob next`
+    b. novi vozač: prebacimo sjednicu `mob next`
 
-    c. prvi vozač: preuzme sjednicu `mob start`
+    c. prethodni vozač: preuzme sjednicu `mob start`
 
-    d. prvi vozač: snimi datoteku
+    d. prethodni vozač: snimi datoteku
 
-    e. prvi vozač: prebaci sjednicu `mob next`
+    e. prethodni vozač: prebaci sjednicu `mob next`
 
-    f. drugi vozač: preuzme sjednicu: `mob start`
+    f. novi vozač: preuzme sjednicu: `mob start`
 
-2. ako želimo promjenu drugog vozača zadržati
+2. ako želimo promjenu novog vozača zadržati
 
-    a. drugi vozač: snimi datoteku
+    a. novi vozač: snimi datoteku
 
-    b. drugi vozač: `mob next`
+    b. novi vozač: `mob next`
 
-    c. prvi vozač: snimi datoteku
+    c. prethodni vozač: snimi datoteku
 
-    d. prvi vozač: spremi ovu verziju datoteke `git stash`
+    d. prethodni vozač: spremi ovu verziju datoteke `git stash`
 
-    e. prvi vozač: preuzme sjednicu `mob start`
+    e. prethodni vozač: preuzme sjednicu `mob start`
 
-    f. prvi vozač: spoji datoteke `git stash pop`
+    f. prethodni vozač: spoji datoteke `git stash pop`
 
-    g. prvi vozač: otvori sve datoteke koje imaju konflikte i popravi ih ručno
+    g. prethodni vozač: otvori sve datoteke koje imaju konflikte i popravi ih ručno
 
-    h. prvi vozač: doda sve datoteke u indeks gita `git add .`
+    h. prethodni vozač: doda sve datoteke u indeks gita `git add .`
 
-    i. prvi vozač: prebaci sjednicu `mob next`
+    i. prethodni vozač: prebaci sjednicu `mob next`
 
-    j. drugi vozač: preuzme sjednicu `mob start`
+    j. novi vozač: preuzme sjednicu `mob start`
 
 ## Literatura
 
