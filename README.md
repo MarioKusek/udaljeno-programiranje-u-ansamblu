@@ -79,7 +79,7 @@ Engleski nazivi:
   - sluša navigatora što mu priča i to provodi u djelo (tipka i koristi IDE)
   - ako nešto ne zna napraviti pita navigatora da mu objasni i da ga vodi u tome
   - ne tipka ništa što mu navigator nije rekao
-  - nema raspravlja o problemu i rješenju
+  - ne raspravlja o problemu i rješenju
   - može se zamisliti da je pametna tipkovnica
   - ono što radi svi moraju vidjeti (dijeljenje ekrana)
 - **navigator** (*navigator/talking*):
