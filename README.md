@@ -157,7 +157,7 @@ Nije bitno tko je rekao što ili čija je ideja, nego da se posao napravi.
 
 ### Iskustva
 
-Brzina će doći s vremenom, obično oko 16 sat zajedničkog rada.
+Brzina će doći s vremenom, obično oko 16 sati zajedničkog rada.
 
 Uhodavanje tima oko različitih stvari traje oko 180 sati (2 mjeseca) rada. Nakon toga postaju vrlo produktivni.
 
