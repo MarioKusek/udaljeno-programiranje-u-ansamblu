@@ -33,7 +33,9 @@ Sadržaj:
 ### Instalacija programa
 
 - Java 11+ - [upute](https://www.fer.unizg.hr/_download/repository/01.1-Podesavanje_varijabli_okruzenja.pdf)
-  - Windows: [JDK 15 General-Availability Release](https://jdk.java.net/15/)
+  - Windows: 
+    - Oracle [JDK 17 General-Availability Release](https://jdk.java.net/17/)
+    - [Eclipse Tumerin](https://adoptium.net/)
   - Linux/Mac: [SdkMan](https://sdkman.io)
 - Eclipse ili neki drugi IDE
 - Git
