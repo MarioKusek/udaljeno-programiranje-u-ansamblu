@@ -169,7 +169,7 @@ Uhodavanje tima oko različitih stvari traje oko 180 sati (2 mjeseca) rada. Nako
 
 Upute za stvaranje repozitorija iz predloška su [ovdje](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
 
-Otići na stranicu repozitorija na GitHubu npr. [https://github.com/MarioKusek/ilj-web-server-template](https://github.com/MarioKusek/ilj-web-server-template), kliknuti na **Use this template**, zatim upišemo za ime rpozitorija koji ćemo stvoriti npr. `ilj-web-server`. Klik na **Create repository from template**.
+Otići na stranicu repozitorija na GitHubu npr. [https://github.com/MarioKusek/ilj-tdd-template](https://github.com/MarioKusek/ilj-tdd-template) ili [https://github.com/MarioKusek/ilj-web-server-template](https://github.com/MarioKusek/ilj-web-server-template), kliknuti na **Use this template**, zatim upišemo za ime rpozitorija koji ćemo stvoriti npr. `ilj-web-server`. Klik na **Create repository from template**.
 
 Ako smo promijenili ime projekta potrebno je kliknuti na datoteku `settings.gradle`, kliknuti na olovku i zamijeniti novo ime projekta npr.
 
@@ -343,6 +343,8 @@ Stranice:
 - https://mobprogramming.org
 - https://mobretreat.org
 - https://github.com/isidore/Talks/blob/master/Mob_Programming.md
+- [Samman Technical Coaching](https://www.sammancoaching.org)
+- https://cyber-dojo.org
 
 Knjiga:
 
