@@ -77,7 +77,7 @@ Engleski nazivi:
 
 ### Uloge
 
-- **vozač** (*driver/typer*):
+- **vozač** (*driver/typist*):
   - sluša navigatora što mu priča i to provodi u djelo (tipka i koristi IDE)
   - ako nešto ne zna napraviti pita navigatora da mu objasni i da ga vodi u tome
   - ne tipka ništa što mu navigator nije rekao
@@ -98,7 +98,7 @@ Engleski nazivi:
       1. reći namjere - na visokoj razini
       2. lokacija - gdje treba nešto napraviti (datoteka/klasa i red)
       3. detalji - npr. pritisni ovu kombinaciju tipki, napiši ovo, klikni ovdje
-- **član tima** (*mobber*):
+- **član tima** (*member/mobber*):
   - razmišlja o problemu i rješenju
   - raspravlja s ostalima
   - predlaže rješenja
