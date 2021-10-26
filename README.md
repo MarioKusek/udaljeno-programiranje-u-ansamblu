@@ -129,6 +129,7 @@ Engleski nazivi:
   - pokrenuti timer na telefonu
 - kada se mijenjaju uloge:
   - postojeći vozač:
+    - **snimi sve datoteke**
     - pokrene `mob next`
     - prestane dijeliti ekran
   - novi vozač:
