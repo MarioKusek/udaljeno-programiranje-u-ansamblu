@@ -55,7 +55,7 @@ Ako nemate korisnički račun na GitHubu treba ga otvoriti ([upute za otvaranje 
 Engleski nazivi:
 
 - *Mob Programming* - popularan, ali ima negativnih konotacija
-- *Enesemble Programming* - preporuča se jer nema negatinve konotacije
+- *Enesemble Programming* - preporuča se jer nema negativne konotacije
 
 ### Organizacija
 
